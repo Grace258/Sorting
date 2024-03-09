@@ -19,7 +19,7 @@ void list_add(node_t **list, node_t *node_t)
 node_t *list_tail(node_t **left)
 {
     while ((*left) && (*left)->next)
-        left = &(AAAA);
+        left = &((*left)->next);
     return *left;
 }
 
@@ -28,7 +28,7 @@ int list_length(node_t **left)
     int n = 0;
     while (*left) {
         ++n;
-        left = &(BBBB);
+        left = &((*left)->next);
     }
     return n;
 }
@@ -107,16 +107,16 @@ void quick_sort(node_t **list)
     
             while (p) {
                 node_t *n = p;
-                p = CCCC;
+                p = p->next;
                 list_add(n->value > value ? &right : &left, n);
             }
 
             begin[i] = left;
-            end[i] = DDDD;
+            end[i] = list_tail(left);
             begin[i + 1] = pivot;
             end[i + 1] = pivot;
             begin[i + 2] = right;
-            end[i + 2] = EEEE;
+            end[i + 2] = list_tail(right);
 
             left = right = NULL;
             i += 2;
